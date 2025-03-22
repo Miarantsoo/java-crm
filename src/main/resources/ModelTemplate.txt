@@ -1,0 +1,18 @@
+package com.project.javacrm.${packageName};
+
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
+${foreigns}
+
+${localDateTime}
+
+@Setter
+@Getter
+@Entity
+@Table(name = "${tableName}")
+public class ${className} {
+
+${fields}
+}

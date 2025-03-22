@@ -1,0 +1,13 @@
+package com.project.javacrm.${packageName};
+
+import org.springframework.data.jpa.domain.Specification;
+import com.project.javacrm.${packageName}.${className};
+import org.springframework.stereotype.Service;
+import com.project.javacrm.${packageName}.${className}Repository;
+import java.util.Optional;
+
+@Service
+public class ${className}Service {
+
+
+}

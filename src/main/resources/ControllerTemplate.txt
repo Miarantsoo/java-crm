@@ -1,0 +1,12 @@
+package com.project.javacrm.${packageName};
+
+import com.project.javacrm.${packageName}.${className};
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+
+@Controller
+@RequestMapping("/${endpoint}")
+public class ${className}Controller {
+
+
+}
