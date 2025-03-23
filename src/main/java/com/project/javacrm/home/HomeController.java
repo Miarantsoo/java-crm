@@ -25,9 +25,8 @@ public class HomeController {
 
     @GetMapping
     @RequestMapping("/")
-    public ModelAndView home() {
-        ModelAndView mav = moduleUtils.setModule("dashboard/dashboard");
-        return mav;
+    public String home() {
+        return "/login";
     }
 
 }

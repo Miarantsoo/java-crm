@@ -11,6 +11,7 @@
     User user = null;
     if(session.getAttribute("user") == null) {
         response.sendRedirect("/login");
+        return;
     } else {
         user = (User) session.getAttribute("user");
     }
