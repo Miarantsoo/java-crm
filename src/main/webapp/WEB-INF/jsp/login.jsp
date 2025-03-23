@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.project.javacrm.user.LaravelError" %><%--
   Created by IntelliJ IDEA.
   User: miarantsoa
   Date: 22/03/2025
@@ -6,6 +6,14 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<%
+    LaravelError error = null;
+    if(request.getAttribute("error") != null) {
+        error = (LaravelError) request.getAttribute("error");
+    }
+%>
+
 <html>
 <head>
     <title>Login NewApp</title>
@@ -38,7 +46,7 @@
                      class="img-fluid" alt="Sample image">
             </div>
             <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-            <form method="POST" action="${pageContext.request.contextPath}/login">
+            <form method="POST" action="${pageContext.request.contextPath}/user/login">
                 <div>
                     <h1 class="text-center">DayByDay NewApp</h1>
                 </div>
@@ -58,8 +66,13 @@
                         <label class="form-label" for="form3Example4">Mot de passe:</label>
                     </div>
 
+                    <% if(error != null) { %>
+                        <div class="alert alert-danger my-2">
+                            <%=error.getError()%>
+                        </div>
+                    <% } %>
                     <div class="text-center text-lg-start mt-4 pt-2">
-                        <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-lg"
+                        <button  type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-lg"
                                  style="padding-left: 2.5rem; padding-right: 2.5rem; background-color: #1a2035; color: #FFF">Login</button>
                     </div>
 
