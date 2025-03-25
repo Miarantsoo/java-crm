@@ -1,7 +1,9 @@
 package com.project.javacrm.config;
 
 
+import com.project.javacrm.utils.AuthService;
 import com.project.javacrm.utils.ModuleUtils;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,8 +21,19 @@ public class ConfigController {
     @Autowired
     ConfigService configService;
 
+    @Autowired
+    AuthService authService;
+
+    @Autowired
+    HttpServletResponse response;
+
     @GetMapping("/conf")
     public ModelAndView config(@ModelAttribute @RequestParam(required = false) String message) {
+        try {
+            authService.requireUser();
+        } catch (Exception e) {
+            return new ModelAndView("redirect:/login");
+        }
         ModelAndView mav = moduleUtils.setModule("conf/config");
         return mav;
     }

@@ -8,13 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%
-    User user = null;
-    if(session.getAttribute("user") == null) {
-        response.sendRedirect("/login");
-        return;
-    } else {
-        user = (User) session.getAttribute("user");
-    }
+    User user = (User) session.getAttribute("user");
 
     String pejy = (String) request.getAttribute("page") + ".jsp";
 %>

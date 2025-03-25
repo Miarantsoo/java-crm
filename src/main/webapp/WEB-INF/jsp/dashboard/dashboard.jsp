@@ -74,7 +74,7 @@
     <div class="col-md-6">
         <div class="card">
             <div class="card-header">
-                <div class="card-title">Tâches du mois</div>
+                <div class="card-title">Etat des tâches du mois</div>
             </div>
             <div class="card-body">
                 <div class="chart-container">
