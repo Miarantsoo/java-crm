@@ -80,14 +80,14 @@
         var pagination = $("#pagination");
 
         var prevClass = (currentPage <= 1) ? "disabled" : "";
-        pagination.append('<li class="page-item ' + prevClass + '"><a class="page-link" href="${pageContext.request.contextPath}/paiement/liste?page=' + (currentPage - 1) + '">Previous</a></li>');
+        pagination.append('<li class="page-item ' + prevClass + '"><a class="page-link" href="${pageContext.request.contextPath}/offer/liste?page=' + (currentPage - 1) + '">Previous</a></li>');
 
         for (var i = 1; i <= totalPages; i++) {
             var active = (i === currentPage) ? "active" : "";
-            pagination.append('<li class="page-item ' + active + '"><a class="page-link" href="${pageContext.request.contextPath}/paiement/liste?page=' + i + '">' + i + '</a></li>');
+            pagination.append('<li class="page-item ' + active + '"><a class="page-link" href="${pageContext.request.contextPath}/offer/liste?page=' + i + '">' + i + '</a></li>');
         }
 
         var nextClass = (currentPage >= totalPages) ? "disabled" : "";
-        pagination.append('<li class="page-item ' + nextClass + '"><a class="page-link" href="${pageContext.request.contextPath}/paiement/liste?page=' + (currentPage + 1) + '">Next</a></li>');
+        pagination.append('<li class="page-item ' + nextClass + '"><a class="page-link" href="${pageContext.request.contextPath}/offer/liste?page=' + (currentPage + 1) + '">Next</a></li>');
     });
 </script>

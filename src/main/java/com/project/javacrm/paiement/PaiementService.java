@@ -38,6 +38,9 @@ public class PaiementService {
 
         Pagination<Paiement> paiements = objectMapper.readValue(response.getBody(), new TypeReference<Pagination<Paiement>>() {
         });
+        for(Paiement p : paiements.getData()) {
+            p.setColorByPrice();
+        }
 
         return paiements;
     }

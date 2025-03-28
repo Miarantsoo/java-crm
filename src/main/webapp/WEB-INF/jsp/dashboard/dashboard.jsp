@@ -2,7 +2,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.project.javacrm.dashboard.ChartPayment" %>
 <%@ page import="com.project.javacrm.dashboard.ChartTask" %>
-<%@ page import="java.util.stream.Collectors" %><%--
+<%@ page import="java.text.DecimalFormat" %><%--
   Created by IntelliJ IDEA.
   User: miarantsoa
   Date: 21/03/2025
@@ -13,6 +13,8 @@
 
 <%
     double totalPaiement = (double) request.getAttribute("totalPaiement");
+    double totalPrixInvoice = (double) request.getAttribute("totalPrixInvoice");
+    double totalPrixOffre = (double) request.getAttribute("totalPrixOffre");
     int totalOffre = (int) request.getAttribute("totalOffer");
     int totalInvoice = (int) request.getAttribute("totalInvoice");
     List<ChartOffer> chartOffer = (List<ChartOffer>) request.getAttribute("dashOffer");
@@ -27,7 +29,7 @@
             <a href="${pageContext.request.contextPath}/paiement/liste?page=1">
                 <div class="card">
                     <div class="card-body p-3 text-center">
-                        <div class="h1 m-0"><%=totalPaiement%> USD</div>
+                        <div class="h1 m-0"><%=String.format("%,.2f",totalPaiement)%> USD</div>
                         <div class="text-muted mb-3">Total paiement </div>
                     </div>
                 </div>
@@ -53,7 +55,28 @@
                 </div>
             </a>
         </div>
-
+    </div>
+    <div class="row">
+        <div class="col-6 col-sm-6 col-lg-4">
+            <a href="${pageContext.request.contextPath}/invoice/liste-lines?page=1">
+                <div class="card">
+                    <div class="card-body p-3 text-center">
+                        <div class="h1 m-0"><%=String.format("%,.2f",totalPrixInvoice)%> USD</div>
+                        <div class="text-muted mb-3">Total prix invoice</div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-6 col-sm-6 col-lg-4">
+            <a href="${pageContext.request.contextPath}/offer/liste-lines?page=1">
+                <div class="card">
+                    <div class="card-body p-3 text-center">
+                        <div class="h1 m-0"><%=String.format("%,.2f",totalPrixOffre)%> USD</div>
+                        <div class="text-muted mb-3">Total prix offre</div>
+                    </div>
+                </div>
+            </a>
+        </div>
     </div>
 
 </div>

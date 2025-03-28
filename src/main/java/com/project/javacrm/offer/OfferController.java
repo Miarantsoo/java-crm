@@ -1,6 +1,7 @@
 package com.project.javacrm.offer;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.project.javacrm.invoice.InvoiceLine;
 import com.project.javacrm.paiement.Paiement;
 import com.project.javacrm.utils.AuthService;
 import com.project.javacrm.utils.ModuleUtils;
@@ -41,4 +42,16 @@ public class OfferController {
         return mav;
     }
 
+    @GetMapping("liste-lines")
+    public ModelAndView goToInvoiceLines(@RequestParam(name = "page", required = false) Integer page) throws JsonProcessingException {
+        try {
+            authService.requireUser();
+        } catch (Exception e) {
+            return new ModelAndView("redirect:/login");
+        }
+        ModelAndView mav = moduleUtils.setModule("invoice/liste-invoice-lines");
+        Pagination<InvoiceLine> paiements = offerService.getPaginateInvoiceLine(page);
+        mav.addObject("invoice-line", paiements);
+        return mav;
+    }
 }

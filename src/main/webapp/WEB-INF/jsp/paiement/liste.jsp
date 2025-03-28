@@ -83,7 +83,7 @@
                     <tbody>
                     <% for(int i = 0; i < paiements.getData().size(); i++) { %>
                     <% Paiement paiement = paiements.getData().get(i); %>
-                        <tr>
+                        <tr class="bg-<%=paiement.getColor()%>">
                             <td><%= paiement.getAmount() / 100%></td>
                             <td><%= paiement.getDescription() %></td>
                             <td><%= paiement.getPayment_source() %></td>
@@ -109,7 +109,7 @@
                                             type="button"
                                             data-bs-toggle="tooltip"
                                             title=""
-                                            class="btn btn-link btn-danger"
+                                            class="btn btn-link btn-info"
                                             data-original-title="Remove"
                                     >
                                         <i class="fa fa-times"></i>

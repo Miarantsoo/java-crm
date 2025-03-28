@@ -42,4 +42,18 @@ public class InvoiceController {
         return mav;
     }
 
+
+    @GetMapping("liste-lines")
+    public ModelAndView goToInvoiceLines(@RequestParam(name = "page", required = false) Integer page) throws JsonProcessingException {
+        try {
+            authService.requireUser();
+        } catch (Exception e) {
+            return new ModelAndView("redirect:/login");
+        }
+        ModelAndView mav = moduleUtils.setModule("invoice/liste-invoice-lines");
+        Pagination<InvoiceLine> paiements = invoiceService.getPaginateInvoiceLine(page);
+        mav.addObject("invoice-line", paiements);
+        return mav;
+    }
+
 }

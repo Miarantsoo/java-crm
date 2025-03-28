@@ -79,6 +79,22 @@
                         </ul>
                     </div>
                 </li>
+                <li class="nav-item">
+                    <a data-bs-toggle="collapse" href="#import">
+                        <i class="fas fa-layer-group"></i>
+                        <p>Import</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="import">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a href="${pageContext.request.contextPath}/import/imp">
+                                    <span class="sub-item">Importer le CSV</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
             </ul>
         </div>
     </div>

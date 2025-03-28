@@ -48,6 +48,8 @@ public class DashboardController {
         }
         ModelAndView mav = moduleUtils.setModule("dashboard/dashboard");
         mav.addObject("totalPaiement", paiementService.getTotalPaiement());
+        mav.addObject("totalPrixInvoice", invoiceService.getTotalPrix());
+        mav.addObject("totalPrixOffre", offerService.getTotalPrix());
         mav.addObject("totalInvoice", offerService.totalOffers());
         mav.addObject("totalOffer", invoiceService.totalInvoice());
         mav.addObject("dashOffer", dashboardService.getChartOffers());

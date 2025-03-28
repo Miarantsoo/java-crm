@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -52,19 +53,28 @@ public class LoginController {
         Object responseObject;
         try {
             responseObject = objectMapper.readValue(response.getBody(), User.class);
-            if(!(responseObject instanceof User)) throw new Exception("Tsy user eh");
+            if(((User) responseObject).getExternal_id() == null) throw new Exception("Tsy user eh");
         } catch (Exception e) {
             responseObject = objectMapper.readValue(response.getBody(), LaravelError.class);
         }
 
+        System.out.println(responseObject);
 
         ModelAndView modelAndView ;
         if(responseObject instanceof LaravelError) {
             modelAndView = new ModelAndView("redirect:/login");
             modelAndView.addObject("error", responseObject);
         } else {
-            modelAndView = new ModelAndView("redirect:/dashboard/");
-            session.setAttribute("user", responseObject);
+//            modelAndView = new ModelAndView("redirect:/dashboard/");
+            if(responseObject instanceof User && ((User) responseObject).getExternal_id() == null) {
+                modelAndView = new ModelAndView("redirect:/login");
+                LaravelError err = new LaravelError();
+                err.setError("Email ou mot de passe invalide");
+                modelAndView.addObject("error", err);
+            } else {
+                modelAndView = new ModelAndView("redirect:/dashboard/");
+                session.setAttribute("user", responseObject);
+            }
         }
 
         return modelAndView;
